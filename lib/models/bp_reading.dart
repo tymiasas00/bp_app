@@ -1,14 +1,16 @@
+import 'package:uuid/uuid.dart';
+
 class BloodPressureReading{
-  final int id;
+  final String id;
   final int systolic;
   final int diastolic;
   final DateTime date;
 
   BloodPressureReading({
-    required this.id,
     required this.systolic,
     required this.diastolic,
-    required this.date});
+    required this.date,
+    }) : id = const Uuid().v1();
 
   Map<String, dynamic> toMap(){
     return {
