@@ -28,15 +28,11 @@ class HomeBottomNavigationBar extends StatelessWidget {
         ),
       ],
       onTap: (int index) {
-        if (index == 0) {
+        if (index == 0) {} 
+        else if (index == 1) {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (ctx){return AddReadingScreen(onSaveReading: onSaveReading);}),
-          );
-        } else if (index == 1) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (ctx){return const Placeholder();}),
           );
         } else if (index == 2) {
           Navigator.push(
