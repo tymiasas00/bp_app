@@ -1,0 +1,74 @@
+import 'package:flutter/material.dart';
+import 'package:bp_app/models/bp_reading.dart';
+
+class ReadingCard extends StatelessWidget {
+  final BloodPressureReading reading;
+
+  const ReadingCard({required this.reading, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16.0),
+      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 2,
+            blurRadius: 5,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Systolic: ${reading.systolic}',
+                style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+              ),
+              Icon(
+                reading.systolic > 120 ? Icons.arrow_upward : Icons.arrow_downward,
+                color: reading.systolic > 120 ? Colors.red : Colors.green,
+              ),
+            ],
+          ),
+          const SizedBox(height: 8.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Diastolic: ${reading.diastolic}',
+                style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+              ),
+              Icon(
+                reading.diastolic > 80 ? Icons.arrow_upward : Icons.arrow_downward,
+                color: reading.diastolic > 80 ? Colors.red : Colors.green,
+              ),
+            ],
+          ),
+          const SizedBox(height: 8.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Pulse: ${reading.pulse}',
+                style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+              ),
+              Icon(
+                reading.pulse > 100 ? Icons.arrow_upward : Icons.arrow_downward,
+                color: reading.pulse > 100 ? Colors.red : Colors.green,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}

@@ -1,8 +1,13 @@
+import 'package:bp_app/add_reading_screen.dart';
+import 'package:bp_app/models/bp_reading.dart';
 import 'package:flutter/material.dart';
 
 class HomeBottomNavigationBar extends StatelessWidget {
+  final void Function(BloodPressureReading reading) onSaveReading;
+
   const HomeBottomNavigationBar({
     super.key,
+    required this.onSaveReading,
   });
 
   @override
@@ -26,7 +31,7 @@ class HomeBottomNavigationBar extends StatelessWidget {
         if (index == 0) {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (ctx){return const Placeholder();}),
+            MaterialPageRoute(builder: (ctx){return AddReadingScreen(onSaveReading: onSaveReading);}),
           );
         } else if (index == 1) {
           Navigator.push(
