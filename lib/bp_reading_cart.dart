@@ -34,8 +34,8 @@ class ReadingCard extends StatelessWidget {
                 style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
               ),
               Icon(
-                reading.systolic > 120 ? Icons.arrow_upward : Icons.arrow_downward,
-                color: reading.systolic > 120 ? Colors.red : Colors.green,
+                reading.systolic > 140 ? Icons.arrow_upward : Icons.arrow_downward,
+                color: reading.systolic > 140 ? Colors.red : Colors.green,
               ),
             ],
           ),
@@ -48,8 +48,8 @@ class ReadingCard extends StatelessWidget {
                 style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
               ),
               Icon(
-                reading.diastolic > 80 ? Icons.arrow_upward : Icons.arrow_downward,
-                color: reading.diastolic > 80 ? Colors.red : Colors.green,
+                reading.diastolic > 90 ? Icons.arrow_upward : Icons.arrow_downward,
+                color: reading.diastolic > 90 ? Colors.red : Colors.green,
               ),
             ],
           ),

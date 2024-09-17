@@ -38,13 +38,27 @@ class _MyHomePageState extends State<MyHomePage> {
                         key: ValueKey(_readings[index].id),
                         child: ReadingCard(reading: _readings[index]),
                         onDismissed: (direction) {
+                          final deletedItem = _readings[index];
                           setState(() {
                             _readings.removeAt(index);
                           });
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: const Text('Reading deleted'),
+                              action: SnackBarAction(
+                                label: 'Undo',
+                                onPressed: () {
+                                  ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                                  setState(() {
+                                    _readings.insert(index, deletedItem);
+                                  });
+                                },
+                              ),
+                            ),
+                          );
                         });
                   }),
             ),
-            
           ],
         ));
   }
