@@ -1,5 +1,5 @@
-import 'package:bp_app/bp_reading_cart.dart';
-import 'package:bp_app/home_bottom_navigation_bar.dart';
+import 'package:bp_app/widgets/bp_reading_cart.dart';
+import 'package:bp_app/widgets/home_bottom_navigation_bar.dart';
 import 'package:bp_app/models/bp_reading.dart';
 import 'package:flutter/material.dart';
 

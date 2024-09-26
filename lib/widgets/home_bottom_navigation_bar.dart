@@ -1,4 +1,4 @@
-import 'package:bp_app/add_reading_screen.dart';
+import 'package:bp_app/screens/add_reading_screen.dart';
 import 'package:bp_app/models/bp_reading.dart';
 import 'package:flutter/material.dart';
 
