@@ -20,6 +20,8 @@ class _AddReadingScreenState extends State<AddReadingScreen> {
   int pulseValue = 90;
   DateTime selectedDate = DateTime.now();
 
+  String readingNotes = '';
+
   Future<DateTime?> showDateTimePicker({
     required BuildContext context,
     DateTime? initialDate,
@@ -78,6 +80,7 @@ class _AddReadingScreenState extends State<AddReadingScreen> {
       diastolic: diastolicValue,
       date: selectedDate,
       pulse: pulseValue,
+      notes: readingNotes,
     );
     widget.onSaveReading(reading);
     Navigator.pop(context);
@@ -91,100 +94,112 @@ class _AddReadingScreenState extends State<AddReadingScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    const Text('Systolic'),
-                    NumberPicker(
-                      value: systolicValue,
-                      minValue: 0,
-                      maxValue: 300,
-                      onChanged: (value) {
-                        setState(() {
-                          systolicValue = value;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 16.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    const Text('Diastolic'),
-                    NumberPicker(
-                      value: diastolicValue,
-                      minValue: 0,
-                      maxValue: 200,
-                      onChanged: (value) {
-                        setState(() {
-                          diastolicValue = value;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(height: 16.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const SizedBox(height: 16.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () => _selectDate(context),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text('Select date:'),
-                          SizedBox(width: 16),
-                          Icon(Icons.calendar_today),
-                        ],
+        child: ListView(
+          children:[ Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const Text('Systolic'),
+                      NumberPicker(
+                        value: systolicValue,
+                        minValue: 0,
+                        maxValue: 300,
+                        onChanged: (value) {
+                          setState(() {
+                            systolicValue = value;
+                          });
+                        },
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
+                  const SizedBox(height: 16.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const Text('Diastolic'),
+                      NumberPicker(
+                        value: diastolicValue,
+                        minValue: 0,
+                        maxValue: 200,
+                        onChanged: (value) {
+                          setState(() {
+                            diastolicValue = value;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const SizedBox(height: 16.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () => _selectDate(context),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text('Select date:'),
+                            SizedBox(width: 16),
+                            Icon(Icons.calendar_today),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const Text('Pulse'),
+                      NumberPicker(
+                        value: pulseValue,
+                        minValue: 0,
+                        maxValue: 200,
+                        onChanged: (value) {
+                          setState(() {
+                            pulseValue = value;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 80),
+              TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Notes',
+                  border: OutlineInputBorder(),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    const Text('Pulse'),
-                    NumberPicker(
-                      value: pulseValue,
-                      minValue: 0,
-                      maxValue: 200,
-                      onChanged: (value) {
-                        setState(() {
-                          pulseValue = value;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(height: 80),
-            Row(
-              children: [
-                ElevatedButton(
-                  onPressed: buttonPressed,
-                  child: const Text('Save'),
-                ),
-                ElevatedButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text("Cancel"),
-                ),
-              ],
-            ),
-          ],
-        ),
+                maxLines: 3,
+                onSaved: (String? value) => readingNotes = value ?? '',
+              ),
+              const SizedBox(height: 80),
+              Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: buttonPressed,
+                    child: const Text('Save'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text("Cancel"),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ]),
+        
       ),
     );
   }

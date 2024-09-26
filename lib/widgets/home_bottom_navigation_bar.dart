@@ -21,6 +21,7 @@ class HomeBottomNavigationBar extends StatelessWidget {
         BottomNavigationBarItem(
           icon: Icon(Icons.add),
           label: 'Add',
+          
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.settings),

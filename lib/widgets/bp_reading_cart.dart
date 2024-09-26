@@ -70,6 +70,8 @@ class ReadingCard extends StatelessWidget {
           ),
           const SizedBox(height: 8.0),
           Text('${DateFormat.yMMMd().format(reading.date)} ${DateFormat.jm().format(reading.date)}'),
+          const SizedBox(height: 8.0),
+          Text(reading.notes != '' ? reading.notes : 'No notes'),
         ],
       ),
     );

@@ -6,6 +6,7 @@ class BloodPressureReading{
   final int diastolic;
   final int pulse;
   final DateTime date;
+  final String notes;
   
 
   BloodPressureReading({
@@ -13,6 +14,7 @@ class BloodPressureReading{
     required this.diastolic,
     required this.date,
     required this.pulse,
+    this.notes = '',
     }) : id = const Uuid().v1();
 
 
