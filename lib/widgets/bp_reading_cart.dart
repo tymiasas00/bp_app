@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bp_app/models/bp_reading.dart';
+import 'package:intl/intl.dart';
 
 class ReadingCard extends StatelessWidget {
   final BloodPressureReading reading;
@@ -30,7 +31,7 @@ class ReadingCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Systolic: ${reading.systolic}',
+                'Systolic: ${reading.systolic} mmHg',
                 style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
               ),
               Icon(
@@ -44,7 +45,7 @@ class ReadingCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Diastolic: ${reading.diastolic}',
+                'Diastolic: ${reading.diastolic} mmHg',
                 style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
               ),
               Icon(
@@ -58,7 +59,7 @@ class ReadingCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Pulse: ${reading.pulse}',
+                'Pulse: ${reading.pulse} bpm',
                 style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
               ),
               Icon(
@@ -67,6 +68,8 @@ class ReadingCard extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 8.0),
+          Text('${DateFormat.yMMMd().format(reading.date)} ${DateFormat.jm().format(reading.date)}'),
         ],
       ),
     );

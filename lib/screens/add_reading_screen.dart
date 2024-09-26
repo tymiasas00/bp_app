@@ -4,10 +4,11 @@ import 'package:numberpicker/numberpicker.dart';
 
 class AddReadingScreen extends StatefulWidget {
   final void Function(BloodPressureReading reading) onSaveReading;
+
   const AddReadingScreen({
     super.key,
     required this.onSaveReading,
-    });
+  });
 
   @override
   State<AddReadingScreen> createState() => _AddReadingScreenState();
@@ -18,45 +19,43 @@ class _AddReadingScreenState extends State<AddReadingScreen> {
   int diastolicValue = 80;
   int pulseValue = 90;
   DateTime selectedDate = DateTime.now();
-  
 
   Future<DateTime?> showDateTimePicker({
-  required BuildContext context,
-  DateTime? initialDate,
-  DateTime? firstDate,
-  DateTime? lastDate,
-}) async {
-  initialDate ??= DateTime.now();
-  firstDate ??= initialDate.subtract(const Duration(days: 365 * 100));
-  lastDate ??= firstDate.add(const Duration(days: 365 * 200));
+    required BuildContext context,
+    DateTime? initialDate,
+    DateTime? firstDate,
+    DateTime? lastDate,
+  }) async {
+    initialDate ??= DateTime.now();
+    firstDate ??= initialDate.subtract(const Duration(days: 365 * 100));
+    lastDate ??= firstDate.add(const Duration(days: 365 * 200));
 
-  final DateTime? selectedDate = await showDatePicker(
-    context: context,
-    initialDate: initialDate,
-    firstDate: firstDate,
-    lastDate: lastDate,
-  );
+    final DateTime? selectedDate = await showDatePicker(
+      context: context,
+      initialDate: initialDate,
+      firstDate: firstDate,
+      lastDate: lastDate,
+    );
 
-  if (selectedDate == null) return null;
+    if (selectedDate == null) return null;
 
-  if (!context.mounted) return selectedDate;
+    if (!context.mounted) return selectedDate;
 
-  final TimeOfDay? selectedTime = await showTimePicker(
-    context: context,
-    initialTime: TimeOfDay.fromDateTime(initialDate),
-  );
+    final TimeOfDay? selectedTime = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.fromDateTime(initialDate),
+    );
 
-  return selectedTime == null
-      ? selectedDate
-      : DateTime(
-          selectedDate.year,
-          selectedDate.month,
-          selectedDate.day,
-          selectedTime.hour,
-          selectedTime.minute,
-        );
-}
-
+    return selectedTime == null
+        ? selectedDate
+        : DateTime(
+            selectedDate.year,
+            selectedDate.month,
+            selectedDate.day,
+            selectedTime.hour,
+            selectedTime.minute,
+          );
+  }
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDateTimePicker(
@@ -65,13 +64,14 @@ class _AddReadingScreenState extends State<AddReadingScreen> {
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
     );
-    
+
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
       });
     }
   }
+
   void buttonPressed() {
     final reading = BloodPressureReading(
       systolic: systolicValue,
@@ -82,6 +82,7 @@ class _AddReadingScreenState extends State<AddReadingScreen> {
     widget.onSaveReading(reading);
     Navigator.pop(context);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -177,8 +178,9 @@ class _AddReadingScreenState extends State<AddReadingScreen> {
                   child: const Text('Save'),
                 ),
                 ElevatedButton(
-                  onPressed: ()=>Navigator.pop(context),
-                  child: const Text("Cancel"),),
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text("Cancel"),
+                ),
               ],
             ),
           ],
