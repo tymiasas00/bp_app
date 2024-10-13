@@ -19,8 +19,9 @@ class _AddReadingScreenState extends State<AddReadingScreen> {
   int diastolicValue = 80;
   int pulseValue = 90;
   DateTime selectedDate = DateTime.now();
-
   String readingNotes = '';
+
+  final _textController = TextEditingController();
 
   Future<DateTime?> showDateTimePicker({
     required BuildContext context,
@@ -80,10 +81,16 @@ class _AddReadingScreenState extends State<AddReadingScreen> {
       diastolic: diastolicValue,
       date: selectedDate,
       pulse: pulseValue,
-      notes: readingNotes,
+      notes: _textController.text,
     );
     widget.onSaveReading(reading);
     Navigator.pop(context);
+  }
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
   }
 
   @override
@@ -176,6 +183,7 @@ class _AddReadingScreenState extends State<AddReadingScreen> {
               ),
               const SizedBox(height: 80),
               TextFormField(
+                controller: _textController,
                 decoration: const InputDecoration(
                   labelText: 'Notes',
                   border: OutlineInputBorder(),

@@ -1,4 +1,5 @@
 {
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorBlinking": "smooth",
+  "cmake.sourceDirectory": "/home/omit/Dev/bp_app/linux",
 }
