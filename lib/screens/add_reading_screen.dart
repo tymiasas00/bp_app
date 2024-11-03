@@ -1,6 +1,7 @@
 import 'package:bp_app/models/bp_reading.dart';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
+import 'package:uuid/uuid.dart';
 
 class AddReadingScreen extends StatefulWidget {
   final void Function(BloodPressureReading reading) onSaveReading;
@@ -77,6 +78,7 @@ class _AddReadingScreenState extends State<AddReadingScreen> {
 
   void buttonPressed() {
     final reading = BloodPressureReading(
+      id: const Uuid().v1(),
       systolic: systolicValue,
       diastolic: diastolicValue,
       date: selectedDate,
